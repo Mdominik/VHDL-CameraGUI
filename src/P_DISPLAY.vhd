@@ -3,8 +3,8 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
 PACKAGE P_DISPLAY IS
-	SUBTYPE T_DIGITS IS INTEGER RANGE 0 TO 10;
-	SUBTYPE T_DISPLAY IS std_ulogic_vector(6 DOWNTO 0);
+	TYPE T_DIGITS IS ARRAY (0 to 2) OF integer RANGE 0 TO 9;
+	TYPE T_DISPLAY IS ARRAY (0 to 2) OF std_ulogic_vector(6 DOWNTO 0);
 
 	CONSTANT SEG_0 : std_ulogic_vector(6 DOWNTO 0) := "0111111";
 	CONSTANT SEG_1 : std_ulogic_vector(6 DOWNTO 0) := "0000011";
@@ -144,12 +144,13 @@ PACKAGE BODY P_DISPLAY IS
 		VARIABLE COL_L : INTEGER;
 		VARIABLE COL_R : INTEGER;
 		BEGIN
+		FOR i in 0 to 2 LOOP
 			-- Clear the display
 			DISP_MATRIX := (OTHERS => (OTHERS => '0'));
 			-- Loop over all segments
 			--6##
 			FOR SEGMENT IN 0 TO 6 LOOP
-				IF DISPLAY(SEGMENT) = '1' THEN
+				IF DISPLAY(i)(SEGMENT) = '1' THEN
 					-- Copy the matrix to the final display
 					-- Loop over all rows of the display
 					FOR ROW IN T_SEG_DEF'RANGE LOOP
@@ -173,6 +174,7 @@ PACKAGE BODY P_DISPLAY IS
 				write(L, DISP_TEXT);
 				writeline(OUTFILE, L);
 			END LOOP;
+		END LOOP;
 		END DISPLAY_DIGIT;
 		END P_DISPLAY;
-		-- pragma translate_on
+-- pragma translate_on

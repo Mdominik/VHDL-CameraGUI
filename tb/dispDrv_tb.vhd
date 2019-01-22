@@ -14,8 +14,8 @@ ARCHITECTURE TEST OF dispDrv_tb IS
 			   display_o 		: OUT T_DISPLAY);
 	END COMPONENT;
 
-	SIGNAL expTime_s 	: T_DIGITS := 0;
-	SIGNAL numberPics_s 	: T_DIGITS := 0;
+	SIGNAL expTime_s 	: T_DIGITS := (0, 0, 0);
+	SIGNAL numberPics_s 	: T_DIGITS := (0, 0, 0);
 	SIGNAL showTime_s 	: std_ulogic := '0';
 	SIGNAL error_s 		: std_ulogic := '0';
 	SIGNAL display_s 	: T_DISPLAY;
@@ -34,33 +34,29 @@ BEGIN
 		wait for 30 ns;
 		showTime_s <= '1';
 		error_s <= '0';
-		numberPics_s <= 2;
-		expTime_s <= 9;
-
+		numberPics_s <= (1,0,2);
+		expTime_s <= (2,1,4);
 		DISPLAY_DIGIT(display_s);
 
 		wait for 30 ns;	
 		showTime_s <= '0';
 		error_s <= '0';
-		numberPics_s <= 2;
-		expTime_s <= 9;
-	
+		numberPics_s <= (1,0,6);
+		expTime_s <= (2,1,0);
 		DISPLAY_DIGIT(display_s);
 
 		wait for 30 ns;	
 		showTime_s <= '1';
-		error_s <= '1';
-		numberPics_s <= 2;
-		expTime_s <= 9;
-
+		error_s <= '0';
+		numberPics_s <= (1,5,1);
+		expTime_s <= (7,4,3);
 		DISPLAY_DIGIT(display_s);
 
 		wait for 30 ns;	
-		showTime_s <= '0';
-		error_s <= '1';
-		numberPics_s <= 2;
-		expTime_s <= 9;
-		
+		showTime_s <= '1';
+		error_s <= '0';
+		numberPics_s <= (1,0,1);
+		expTime_s <= (2,1,3);
 		DISPLAY_DIGIT(display_s);
 
 		wait;

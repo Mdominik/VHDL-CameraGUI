@@ -1,6 +1,6 @@
--- entity of extended multiplexer
--- Inputs: exp_time_i, number_pics_i, show_time_i, error_i
--- Outputs: disp_photo_o
+-- entity of 7-segment display
+-- Inputs: expTime_i, numberPics_i, showTime_i, error_i
+-- Outputs: display_o
 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
