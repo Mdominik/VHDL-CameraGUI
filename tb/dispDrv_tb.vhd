@@ -32,7 +32,7 @@ BEGIN
 	STIMULI : PROCESS
 	BEGIN
 		wait for 30 ns;
-		showTime_s <= '1';
+		showTime_s <= '0';
 		error_s <= '0';
 		numberPics_s <= (1,0,2);
 		expTime_s <= (2,1,4);
@@ -40,7 +40,7 @@ BEGIN
 
 		wait for 30 ns;	
 		showTime_s <= '0';
-		error_s <= '0';
+		error_s <= '1';
 		numberPics_s <= (1,0,6);
 		expTime_s <= (2,1,0);
 		DISPLAY_DIGIT(display_s);
@@ -48,15 +48,22 @@ BEGIN
 		wait for 30 ns;	
 		showTime_s <= '1';
 		error_s <= '0';
-		numberPics_s <= (1,5,1);
-		expTime_s <= (7,4,3);
+		numberPics_s <= (1,0,1);
+		expTime_s <= (2,1,3);
 		DISPLAY_DIGIT(display_s);
 
 		wait for 30 ns;	
-		showTime_s <= '1';
+		showTime_s <= '0';
 		error_s <= '0';
-		numberPics_s <= (1,0,1);
-		expTime_s <= (2,1,3);
+		numberPics_s <= (1,5,1);
+		expTime_s <= (0,1,9);
+		DISPLAY_DIGIT(display_s);
+
+		wait for 30 ns;	
+		showTime_s <= '0';
+		error_s <= '1';
+		numberPics_s <= (1,5,1);
+		expTime_s <= (0,1,9);
 		DISPLAY_DIGIT(display_s);
 
 		wait;
@@ -67,4 +74,3 @@ CONFIGURATION cfg_dispDrv_tb OF dispDrv_tb IS
 	FOR TEST
 	END FOR;
 END cfg_dispDrv_tb;
-	
